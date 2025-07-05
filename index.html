@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seus Produtos Online</title> <!-- Título atualizado -->
+    <!-- Inclui o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter para todo o corpo, se disponível, caso contrário, usa uma fonte sans-serif genérica */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos adicionais para centralizar o conteúdo verticalmente */
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que o contêiner ocupe a altura total da viewport */
+        }
+
+        /* Animação de pulsação sutil para os cards de produto (agora com opacidade para "piscar") */
+        @keyframes pulse-subtle {
+            0%, 100% {
+                opacity: 1; /* Totalmente visível */
+                transform: scale(1);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            50% {
+                opacity: 0.8; /* Ligeiramente transparente para simular o piscar */
+                transform: scale(1.005);
+                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        .animate-pulse-subtle {
+            animation: pulse-subtle 5s infinite ease-in-out; /* Duração aumentada para um piscar mais lento */
+        }
+
+        /* Estilo para a imagem de pré-visualização que será exibida ao passar o mouse */
+        .product-image-preview {
+            max-height: 150px; /* Altura máxima da imagem de pré-visualização */
+            width: auto; /* Largura automática para manter a proporção */
+            object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+            border-radius: 0.75rem; /* Cantos arredondados para a imagem */
+            margin-top: 1rem; /* Espaçamento superior */
+            display: none; /* Escondido por padrão */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Quando o card é hover, a imagem de pré-visualização se torna visível */
+        .product-card:hover .product-image-preview {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Animação para o degradê de fundo e dos botões */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background-size: 400% 400%; /* Aumenta o tamanho do gradiente para permitir movimento */
+            animation: gradient-animation 15s ease infinite; /* Aplica a animação ao gradiente */
+        }
+
+        /* Estilos específicos para os gradientes dos cards de produto */
+        .product-card.garrafa-termica {
+            background-image: linear-gradient(to bottom right, #4a0e6e, #8e2de2, #4a0e6e); /* Roxo */
+        }
+        .product-card.jogo-de-chaves {
+            background-image: linear-gradient(to bottom right, #1e7e34, #28a745, #1e7e34); /* Verde */
+        }
+        .product-card.fone-jbl {
+            background-image: linear-gradient(to bottom right, #ff8c00, #ffa500, #ff8c00); /* Laranja */
+        }
+        .product-card.maquina-de-cortar-cabelo {
+            background-image: linear-gradient(to bottom right, #daa520, #ffd700, #daa520); /* Dourado */
+        }
+    </style>
+</head>
+<!-- Adicionado classes de gradiente e animação ao body -->
+<body class="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex-center animated-gradient">
+    <div class="p-8 max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl space-y-8">
+        <!-- Logo adicionada aqui, com tamanho aumentado para w-64 -->
+        <div class="flex justify-center mb-8">
+            <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751757179/49e54fb0-4db9-4648-9db0-7eb2808ee158_mipxrm.png"
+                 alt="Logo Cris Vendas" class="w-64 h-auto rounded-xl shadow-md">
+        </div>
+
+        <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-8 tracking-tight">Nossos Produtos</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+            <!-- Card do Produto: Garrafa Térmica (roxo com degradê mais intenso e animado) -->
+            <a href="https://crislon.github.io/Garrafa.html" target="_blank" rel="noopener noreferrer"
+               class="product-card garrafa-termica block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animate-pulse-subtle animated-gradient"
+               data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751121757/unnamed_1_xo7txp.jpg">
+                <h2 class="text-2xl font-bold mb-2">Garrafa Térmica</h2>
+                <p class="text-purple-100 text-sm mb-4">Mantenha suas bebidas na temperatura ideal por horas. Perfeita para o dia a dia e aventuras.</p>
+                <!-- Imagem de pré-visualização (inicialmente escondida) -->
+                <img src="" alt="Imagem de Garrafa Térmica" class="product-image-preview mx-auto">
+            </a>
+
+            <!-- Card do Produto: Jogo de Chaves (verde com degradê mais intenso e animado) -->
+            <a href="https://crislon.github.io/Chaves.html" target="_blank" rel="noopener noreferrer"
+               class="product-card jogo-de-chaves block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animate-pulse-subtle animated-gradient"
+               data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751125394/videoframe_1759_iugdf4.png">
+                <h2 class="text-2xl font-bold mb-2">Jogo de Chaves</h2>
+                <p class="text-green-100 text-sm mb-4">Ferramentas essenciais para qualquer reparo doméstico ou profissional. Durabilidade e precisão.</p>
+                <!-- Imagem de pré-visualização (inicialmente escondida) -->
+                <img src="" alt="Imagem de Jogo de Chaves" class="product-image-preview mx-auto">
+            </a>
+
+            <!-- Card do Produto: Fone JBL (laranja com degradê mais intenso e animado) -->
+            <a href="https://crislon.github.io/Fone.html" target="_blank" rel="noopener noreferrer"
+               class="product-card fone-jbl block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animate-pulse-subtle animated-gradient"
+               data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751477757/br-11134207-7r98o-m5glcymp754i38_resize_w450_nl_y0zptl.webp">
+                <h2 class="text-2xl font-bold mb-2">Fone JBL</h2>
+                <p class="text-orange-100 text-sm mb-4">Experimente um som imersivo e de alta qualidade. Conforto e clareza para sua música.</p>
+                <!-- Imagem de pré-visualização (inicialmente escondida) -->
+                <img src="" alt="Imagem de Fone JBL" class="product-image-preview mx-auto">
+            </a>
+
+            <!-- Card do Produto: Máquina de Cortar Cabelo (dourado com degradê mais intenso e animado) -->
+            <a href="https://crislon.github.io/Maquina.html" target="_blank" rel="noopener noreferrer"
+               class="product-card maquina-de-cortar-cabelo block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animate-pulse-subtle animated-gradient"
+               data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751127863/cortador_j4cwwe.png">
+                <h2 class="text-2xl font-bold mb-2">Máquina de Cortar Cabelo</h2>
+                <p class="text-amber-100 text-sm mb-4">Cortes precisos e profissionais no conforto da sua casa. Praticidade e eficiência.</p>
+                <!-- Imagem de pré-visualização (inicialmente escondida) -->
+                <img src="" alt="Imagem de Máquina de Cortar Cabelo" class="product-image-preview mx-auto">
+            </a>
+        </div>
+
+        <div class="mt-12 text-center">
+            <p class="text-gray-800 text-xl font-medium mb-3">Fale Conosco para mais informações!</p>
+            <!-- Link para WhatsApp sem exibir o número -->
+            <a href="https://wa.me/5575998094893" target="_blank" rel="noopener noreferrer"
+               class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-7 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-pulse-subtle">
+                WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Seleciona todos os cards de produto
+        const productCards = document.querySelectorAll('.product-card');
+
+        // Adiciona um ouvinte de evento para cada card
+        productCards.forEach(card => {
+            const previewImage = card.querySelector('.product-image-preview');
+            const imageUrl = card.dataset.image; // Pega o URL da imagem do atributo data-image
+
+            // Evento ao passar o mouse sobre o card
+            card.addEventListener('mouseover', () => {
+                if (imageUrl) {
+                    previewImage.src = imageUrl; // Define a fonte da imagem
+                    previewImage.style.display = 'block'; // Mostra a imagem
+                    setTimeout(() => {
+                        previewImage.style.opacity = '1'; // Faz a transição da opacidade
+                    }, 10); // Pequeno atraso para garantir que o display seja aplicado primeiro
+                }
+            });
+
+            // Evento ao tirar o mouse do card
+            card.addEventListener('mouseout', () => {
+                previewImage.style.opacity = '0'; // Inicia a transição de opacidade para esconder
+                setTimeout(() => {
+                    previewImage.style.display = 'none'; // Esconde a imagem após a transição
+                    previewImage.src = ''; // Limpa a fonte da imagem para economizar recursos
+                }, 300); // Deve corresponder à duração da transição CSS
+            });
+        });
+    </script>
+</body>
+</html>
