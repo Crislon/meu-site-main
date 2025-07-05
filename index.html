@@ -19,7 +19,8 @@
             min-height: 100vh; /* Garante que o contêiner ocupe a altura total da viewport */
         }
 
-        /* Animação de pulsação sutil para os cards de produto (REMOVIDA a opacidade, apenas transform e shadow) */
+        /* Animação de pulsação sutil para os cards de produto (apenas transform e shadow) */
+        /* Esta animação foi comentada para simplificar o comportamento dos botões, conforme solicitado */
         /* @keyframes pulse-subtle {
             0%, 100% {
                 transform: scale(1);
@@ -42,15 +43,16 @@
             object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
             border-radius: 0.75rem; /* Cantos arredondados para a imagem */
             margin-top: 1rem; /* Espaçamento superior */
-            visibility: hidden; /* Escondido por padrão, mas ocupa espaço */
+            display: none; /* Escondido por padrão */
             opacity: 0;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Transição suave */
+            transition: opacity 0.3s ease-in-out; /* Transição suave apenas para opacidade */
         }
 
         /* Quando o card é hover, a imagem de pré-visualização se torna visível */
+        /* O JavaScript controlará o display e a opacidade */
         .product-card:hover .product-image-preview {
-            visibility: visible;
-            opacity: 1;
+            /* display: block; removido, será controlado pelo JS */
+            /* opacity: 1; removido, será controlado pelo JS */
         }
 
         /* Animação para o degradê de fundo e dos botões */
@@ -156,20 +158,20 @@
             card.addEventListener('mouseover', () => {
                 if (imageUrl) {
                     previewImage.src = imageUrl; // Define a fonte da imagem
-                    previewImage.style.visibility = 'visible'; // Torna visível
-                    previewImage.style.opacity = '1'; // Faz a transição da opacidade
+                    previewImage.style.display = 'block'; // Mostra a imagem
+                    setTimeout(() => {
+                        previewImage.style.opacity = '1'; // Faz a transição da opacidade
+                    }, 10); // Pequeno atraso para garantir que o display seja aplicado primeiro
                 }
             });
 
             // Evento ao tirar o mouse do card
             card.addEventListener('mouseout', () => {
                 previewImage.style.opacity = '0'; // Inicia a transição de opacidade para esconder
-                // Após a transição, torna invisível e limpa o src
-                previewImage.addEventListener('transitionend', function handler() {
-                    previewImage.style.visibility = 'hidden';
-                    previewImage.src = ''; // Limpa a fonte da imagem após estar invisível
-                    previewImage.removeEventListener('transitionend', handler); // Remove o listener para evitar execuções múltiplas
-                }, { once: true }); // Executa o listener apenas uma vez
+                setTimeout(() => {
+                    previewImage.style.display = 'none'; // Esconde a imagem após a transição
+                    previewImage.src = ''; // Limpa a fonte da imagem
+                }, 300); // Deve corresponder à duração da transição CSS
             });
         });
     </script>
