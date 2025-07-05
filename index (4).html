@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garrafa Térmica Premium | Detalhes do Produto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Pastel Harmony -->
+    <!-- Application Structure Plan: A estrutura da página dedicada é mais detalhada e vertical, organizada para guiar o usuário através de informações aprofundadas. O foco mudou para as vantagens térmicas. Inclui: 1. Hero principal com imagem e CTA, 2. Seção de 'Sobre a Garrafa' para detalhes técnicos e térmicos, 3. 'Vantagens Exclusivas' com mais texto e ícones sobre o desempenho térmico, 4. 'Explore as Cores' (interativa), 5. 'Gerencie Seus Líquidos' com o gráfico (reformulado para focar em gerenciamento), 6. 'Perguntas Frequentes' (incluindo sobre a térmica), e 7. CTA final. Essa estrutura foi escolhida para fornecer um nível de detalhe que uma landing page não comportaria, respondendo a possíveis dúvidas e solidificando o valor do produto antes da compra, com ênfase nas funcionalidades térmicas. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Detalhes do produto (material, capacidade, **propriedades térmicas**) -> Goal: Informar -> Viz: Texto descritivo e lista -> Interaction: Nenhuma -> Justification: Fornece informações essenciais de forma clara, agora com foco na tecnologia térmica. Library: HTML.
+        - Report Info: **Benefícios térmicos aprofundados** -> Goal: Informar/Persuadir -> Viz: Parágrafos descritivos com ícones -> Interaction: Nenhuma -> Justification: Expande os pontos chave das vantagens térmicas com mais detalhes. Library: Unicode/HTML.
+        - Report Info: Variedade de cores -> Goal: Engajar/Explorar -> Viz: Botões de seleção de cor com atualização de texto -> Interaction: Clique para mudar o texto descritivo -> Justification: Permite personalização e engajamento visual. Library: JS.
+        - Report Info: Importância do gerenciamento de líquidos -> Goal: Educar/Motivar -> Viz: Gráfico Donut -> Interaction: Hover para detalhes -> Justification: Visualiza o conceito de meta de consumo de líquidos de forma simples e motivadora, adaptado ao contexto térmico. Library: Chart.js.
+        - Report Info: Dúvidas comuns (**incluindo sobre desempenho térmico**) -> Goal: Suporte/Informar -> Viz: Seção de FAQ (Acordeão) -> Interaction: Clique para expandir/colapsar -> Justification: Responde proativamente a perguntas frequentes, construindo confiança e abordando o novo foco. Library: JS.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px; /* Slightly larger for dedicated page */
+            height: auto;
+            min-height: 300px;
+            max-height: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                min-height: 380px;
+            }
+        }
+        .cta-button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.2), 0 5px 8px -2px rgba(0, 0, 0, 0.08);
+        }
+        .color-selector button.active {
+            transform: scale(1.1);
+            border-width: 3px;
+        }
+        .faq-item {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-answer.open {
+            max-height: 200px; /* Adjust as needed for content length */
+            transition: max-height 0.5s ease-in;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.rotate {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF8] text-gray-800">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-br from-purple-100 to-purple-50 py-12 md:py-20 px-4 text-center relative">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 flex justify-center order-2 md:order-1">
+                <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751121757/unnamed_1_xo7txp.jpg" alt="Garrafas Motivacionais em diversas cores" class="rounded-xl shadow-2xl w-full max-w-sm md:max-w-md lg:max-w-lg">
+            </div>
+            <div class="md:w-1/2 text-left order-1 md:order-2">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-purple-900 mb-4 leading-tight">
+                    Garrafa Térmica Premium<br><span class="text-purple-600">Sua Bebida na Temperatura Ideal.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
+                    Desfrute de bebidas perfeitamente geladas ou quentinhas por horas, onde quer que você vá. Nossas garrafas combinam design elegante, tecnologia térmica avançada e a motivação que você precisa para se manter hidratado(a) o dia todo.
+                </p>
+                <a href="https://s.shopee.com.br/1qQcTaWDqM" target="_blank" class="cta-button inline-block bg-purple-700 text-white font-bold rounded-full px-10 py-4 text-xl hover:bg-purple-800 transition duration-300 ease-in-out transform hover:scale-105">
+                    Comprar Agora na Shopee
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About the Bottle Section -->
+    <section class="py-16 md:py-24 px-4 bg-[#FDFBF8]">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Sobre a Garrafa Térmica</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-4">Design, Materiais e Tecnologia Térmica</h3>
+                    <p class="text-gray-600 mb-4">Nossas garrafas são cuidadosamente projetadas pensando na sua rotina e na eficiência térmica. Fabricadas com aço inoxidável de alta qualidade, possuem parede dupla isolada a vácuo, garantindo que suas bebidas permaneçam na temperatura ideal por horas. São 100% livres de BPA, assegurando a pureza e segurança da sua bebida. O design ergonômico com alça de transporte facilita o manuseio e o transporte.</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Material: Aço inoxidável durável e livre de BPA.</li>
+                        <li>Tecnologia de isolamento a vácuo de parede dupla.</li>
+                        <li>Tampa à prova de vazamentos com travamento seguro.</li>
+                        <li>Canudo de silicone macio para beber confortavelmente.</li>
+                        <li>Fácil de limpar e reutilizável.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-4">Funcionalidades Inteligentes e Versatilidade</h3>
+                    <p class="text-gray-600 mb-4">Além da performance térmica excepcional, as garrafas contam com marcadores de tempo motivacionais, que, junto com sua capacidade de manter a temperatura, permitem que você organize sua ingestão de líquidos ao longo do dia, seja água gelada, chá quente ou seu café favorito. Com capacidades que variam de 500ml a 2 litros, há um tamanho ideal para cada momento.</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li>Marcadores de tempo para controle de consumo.</li>
+                        <li>Boca larga para fácil enchimento e adição de gelo/frutas.</li>
+                        <li>Design leve e portátil.</li>
+                        <li>Capacidades variadas para atender a todas as necessidades.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Benefits Section (Thermal Focus) -->
+    <section class="py-16 md:py-24 px-4 bg-purple-50">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Vantagens Exclusivas da Sua Garrafa Térmica</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-left">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">🌡️</div>
+                    <h3 class="text-xl font-bold mb-2">Temperatura Perfeita por Horas</h3>
+                    <p class="text-gray-600">Desfrute de bebidas geladas por até 24 horas e quentes por até 12 horas. Perfeito para manter seu café quente no inverno ou sua água gelada no verão.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">🚫💧</div>
+                    <h3 class="text-xl font-bold mb-2">Sem Condensação Externa</h3>
+                    <p class="text-gray-600">A parede dupla evita a formação de suor na parte externa da garrafa, mantendo suas mãos secas e protegendo sua mochila, mesa ou documentos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">💪</div>
+                    <h3 class="text-xl font-bold mb-2">Construção Robusta e Durável</h3>
+                    <p class="text-gray-600">Feita para durar, a garrafa em aço inoxidável é resistente a impactos e corrosão, ideal para o uso diário e aventuras ao ar livre.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">✨</div>
+                    <h3 class="text-xl font-bold mb-2">Sabor Puro e Intacto</h3>
+                    <p class="text-gray-600">O material de alta qualidade não retém nem transfere odores ou sabores, garantindo que sua bebida tenha sempre o gosto que você espera.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">🔄</div>
+                    <h3 class="text-xl font-bold mb-2">Versatilidade para Qualquer Bebida</h3>
+                    <p class="text-gray-600">Desfrute de água, sucos, chás, café ou smoothies. Nossa garrafa térmica é sua companheira perfeita para todas as suas escolhas de bebidas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-4xl mb-4 text-purple-600">🌱</div>
+                    <h3 class="text-xl font-bold mb-2">Sustentabilidade no Dia a Dia</h3>
+                    <p class="text-gray-600">Contribua para um planeta mais verde. Reutilizar sua garrafa térmica ajuda a reduzir o consumo de copos e garrafas plásticas descartáveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Gallery Section -->
+    <section class="py-16 md:py-24 bg-[#FDFBF8]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Escolha Sua Cor Favorita</h2>
+            <p class="text-lg text-gray-600 mb-10">Selecione uma cor para ver mais detalhes e imagine como ela se encaixará no seu dia a dia.</p>
+            <div id="color-selector" class="color-selector flex justify-center items-center gap-4 mb-6 flex-wrap">
+                <button data-color="Rosa" class="w-12 h-12 rounded-full bg-gradient-to-b from-pink-400 to-pink-200 border-2 border-transparent focus:outline-none transition-transform duration-200 active"></button>
+                <button data-color="Verde" class="w-12 h-12 rounded-full bg-gradient-to-b from-green-400 to-green-200 border-2 border-transparent focus:outline-none transition-transform duration-200"></button>
+                <button data-color="Roxo" class="w-12 h-12 rounded-full bg-gradient-to-b from-purple-400 to-purple-200 border-2 border-transparent focus:outline-none transition-transform duration-200"></button>
+                <button data-color="Preto" class="w-12 h-12 rounded-full bg-gradient-to-b from-gray-800 to-gray-500 border-2 border-transparent focus:outline-none transition-transform duration-200"></button>
+                <button data-color="Azul" class="w-12 h-12 rounded-full bg-gradient-to-b from-blue-400 to-blue-200 border-2 border-transparent focus:outline-none transition-transform duration-200"></button>
+            </div>
+            <div id="product-details" class="mt-4 text-xl font-semibold text-purple-800 h-8">
+                Cor Rosa: Vibrante e inspiradora, perfeita para um toque de alegria.
+            </div>
+        </div>
+    </section>
+
+    <!-- Hydration Chart Section (Reframed) -->
+    <section class="py-16 md:py-24 bg-purple-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Gerencie Seus Líquidos no Dia a Dia</h2>
+            <p class="text-lg text-gray-600 mb-10">Use a garrafa para planejar sua ingestão de líquidos e manter o controle. Veja como uma meta diária pode ser visualizada:</p>
+            <div class="chart-container">
+                <canvas id="hydrationChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Updated for Thermal) -->
+    <section class="py-16 md:py-24 bg-[#FDFBF8]">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-10 text-center">Perguntas Frequentes</h2>
+            <div id="faq-container" class="space-y-4">
+                <div class="faq-item bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-purple-700">Por quanto tempo a garrafa mantém a temperatura?</h3>
+                        <span class="faq-icon text-2xl text-purple-600">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600">
+                        <p>Nossas garrafas são projetadas para manter líquidos frios por até 24 horas e líquidos quentes por até 12 horas, dependendo das condições de uso e da temperatura inicial da bebida.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-purple-700">Qual o material da garrafa?</h3>
+                        <span class="faq-icon text-2xl text-purple-600">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600">
+                        <p>Nossas garrafas são fabricadas com aço inoxidável premium 18/8, com parede dupla isolada a vácuo, e são 100% livres de BPA, garantindo durabilidade e segurança para sua saúde.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-purple-700">Ela é à prova de vazamentos?</h3>
+                        <span class="faq-icon text-2xl text-purple-600">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600">
+                        <p>Sim, a tampa possui um design com vedação segura e mecanismo de travamento para evitar vazamentos acidentais. Perfeita para levar na bolsa sem preocupações.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="text-xl font-semibold text-purple-700">Como faço para limpar a garrafa?</h3>
+                        <span class="faq-icon text-2xl text-purple-600">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-600">
+                        <p>A garrafa é fácil de limpar! Recomendamos lavagem à mão com água morna e sabão neutro. Não é recomendado o uso em máquinas de lavar louça para preservar a vida útil dos marcadores e vedantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section -->
+    <section class="bg-purple-700 text-white">
+        <div class="max-w-4xl mx-auto py-16 md:py-20 px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Não espere mais para ter sua bebida perfeita!</h2>
+            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto mb-8">Escolha sua garrafa térmica hoje e desfrute de suas bebidas na temperatura ideal em qualquer lugar.</p>
+            <a href="https://s.shopee.com.br/1qQcTaWDqM" target="_blank" class="cta-button inline-block bg-white text-purple-800 font-bold rounded-full px-12 py-5 text-xl hover:bg-purple-100 transition duration-300 ease-in-out transform hover:scale-105">
+                Comprar Minha Garrafa Agora!
+            </a>
+        </div>
+    </section>
+
+    <footer class="text-center py-6 bg-[#FDFBF8]">
+        <p class="text-gray-500 text-sm">&copy; 2025 Garrafas Térmicas. Todos os direitos reservados. *Sua bebida, na sua temperatura, sempre.*</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Interactive Gallery Logic
+            const colorSelector = document.getElementById('color-selector');
+            const productDetails = document.getElementById('product-details');
+            const colorDescriptions = {
+                "Rosa": "Vibrante e inspiradora, perfeita para um toque de alegria no seu dia.",
+                "Verde": "Refrescante e natural, ideal para quem busca tranquilidade e vitalidade.",
+                "Roxo": "Elegante e misterioso, adiciona um toque de sofisticação à sua hidratação.",
+                "Preto": "Clássico e versátil, combina com tudo e transmite força e foco.",
+                "Azul": "Calmante e expansivo, lembra o céu e o mar, promovendo serenidade."
+            };
+            const buttons = colorSelector.querySelectorAll('button');
+
+            colorSelector.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    buttons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.style.borderColor = 'transparent';
+                    });
+                    
+                    e.target.classList.add('active');
+                    e.target.style.borderColor = e.target.dataset.color === 'Preto' ? '#FFFFFF' : '#4C1D95';
+                    
+                    const colorName = e.target.dataset.color;
+                    productDetails.textContent = `Cor ${colorName}: ${colorDescriptions[colorName]}`;
+                }
+            });
+
+            // Chart.js Logic
+            const ctx = document.getElementById('hydrationChart').getContext('2d');
+            const hydrationChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Líquido Consumido (75%)', 'Meta Restante (25%)'],
+                    datasets: [{
+                        label: 'Meta de Consumo de Líquidos',
+                        data: [75, 25],
+                        backgroundColor: [
+                            'rgba(126, 34, 206, 0.8)', // Purple
+                            'rgba(209, 213, 219, 0.5)' // Light Gray
+                        ],
+                        borderColor: [
+                            'rgba(126, 34, 206, 1)',
+                            'rgba(209, 213, 219, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        title: {
+                           display: true,
+                           text: 'Seu Gerenciamento de Líquidos Diário (%)',
+                           font: {
+                               size: 18,
+                               weight: 'bold'
+                           },
+                           padding: {
+                               top: 10,
+                               bottom: 20
+                           }
+                        }
+                    }
+                }
+            });
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const header = item.querySelector('.cursor-pointer');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+
+                header.addEventListener('click', () => {
+                    // Close all other open answers
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.querySelector('.faq-answer').classList.remove('open');
+                            otherItem.querySelector('.faq-icon').classList.remove('rotate');
+                        }
+                    });
+
+                    // Toggle current item
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('rotate');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
