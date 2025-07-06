@@ -48,6 +48,12 @@
             transition: opacity 0.3s ease-in-out; /* Transição suave apenas para opacidade */
         }
 
+        /* Quando o card é hover, a imagem de pré-visualização se torna visível */
+        .product-card:hover .product-image-preview {
+            display: block; /* Mostra a imagem */
+            opacity: 1; /* Torna a imagem totalmente visível */
+        }
+
         /* Animação para o degradê de fundo e dos botões */
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
@@ -151,22 +157,7 @@
             if (imageUrl) {
                 previewImage.src = imageUrl;
             }
-
-            // Evento ao passar o mouse sobre o card
-            card.addEventListener('mouseover', () => {
-                previewImage.style.display = 'block'; // Mostra a imagem
-                setTimeout(() => {
-                    previewImage.style.opacity = '1'; // Faz a transição da opacidade
-                }, 10); // Pequeno atraso para garantir que o display seja aplicado primeiro
-            });
-
-            // Evento ao tirar o mouse do card
-            card.addEventListener('mouseout', () => {
-                previewImage.style.opacity = '0'; // Inicia a transição de opacidade para esconder
-                setTimeout(() => {
-                    previewImage.style.display = 'none'; // Esconde a imagem após a transição
-                }, 300); // Deve corresponder à duração da transição CSS
-            });
+            // Não há mais event listeners de mouseover/mouseout aqui, o CSS fará o trabalho.
         });
     </script>
 </body>
