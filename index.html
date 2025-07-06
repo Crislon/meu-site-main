@@ -48,13 +48,6 @@
             transition: opacity 0.3s ease-in-out; /* Transição suave apenas para opacidade */
         }
 
-        /* Quando o card é hover, a imagem de pré-visualização se torna visível */
-        /* O JavaScript controlará o display e a opacidade */
-        .product-card:hover .product-image-preview {
-            /* display: block; removido, será controlado pelo JS */
-            /* opacity: 1; removido, será controlado pelo JS */
-        }
-
         /* Animação para o degradê de fundo e dos botões */
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
@@ -154,15 +147,17 @@
             const previewImage = card.querySelector('.product-image-preview');
             const imageUrl = card.dataset.image; // Pega o URL da imagem do atributo data-image
 
+            // Define a fonte da imagem uma vez, na inicialização
+            if (imageUrl) {
+                previewImage.src = imageUrl;
+            }
+
             // Evento ao passar o mouse sobre o card
             card.addEventListener('mouseover', () => {
-                if (imageUrl) {
-                    previewImage.src = imageUrl; // Define a fonte da imagem
-                    previewImage.style.display = 'block'; // Mostra a imagem
-                    setTimeout(() => {
-                        previewImage.style.opacity = '1'; // Faz a transição da opacidade
-                    }, 10); // Pequeno atraso para garantir que o display seja aplicado primeiro
-                }
+                previewImage.style.display = 'block'; // Mostra a imagem
+                setTimeout(() => {
+                    previewImage.style.opacity = '1'; // Faz a transição da opacidade
+                }, 10); // Pequeno atraso para garantir que o display seja aplicado primeiro
             });
 
             // Evento ao tirar o mouse do card
@@ -170,7 +165,6 @@
                 previewImage.style.opacity = '0'; // Inicia a transição de opacidade para esconder
                 setTimeout(() => {
                     previewImage.style.display = 'none'; // Esconde a imagem após a transição
-                    previewImage.src = ''; // Limpa a fonte da imagem
                 }, 300); // Deve corresponder à duração da transição CSS
             });
         });
