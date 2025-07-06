@@ -19,23 +19,6 @@
             min-height: 100vh; /* Garante que o contêiner ocupe a altura total da viewport */
         }
 
-        /* Animação de pulsação sutil para os cards de produto (apenas transform e shadow) */
-        /* Esta animação foi comentada para simplificar o comportamento dos botões, conforme solicitado */
-        /* @keyframes pulse-subtle {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            50% {
-                transform: scale(1.005);
-                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            }
-        }
-
-        .animate-pulse-subtle {
-            animation: pulse-subtle 5s infinite ease-in-out;
-        } */
-
         /* Estilo para a imagem de pré-visualização que será exibida ao passar o mouse */
         .product-image-preview {
             max-height: 150px; /* Altura máxima da imagem de pré-visualização */
@@ -83,7 +66,8 @@
 </head>
 <!-- Adicionado classes de gradiente e animação ao body -->
 <body class="bg-gradient-to-br from-blue-400 via-purple-500 to-pink-600 flex-center animated-gradient">
-    <div class="p-8 max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl space-y-8">
+    <!-- A parte central agora tem um degradê mais vibrante -->
+    <div class="p-8 max-w-2xl mx-auto bg-gradient-to-br from-purple-100 via-pink-200 to-orange-100 rounded-3xl shadow-2xl space-y-8">
         <!-- Logo adicionada aqui, com tamanho aumentado para w-64 -->
         <div class="flex justify-center mb-8">
             <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751757179/49e54fb0-4db9-4648-9db0-7eb2808ee158_mipxrm.png"
