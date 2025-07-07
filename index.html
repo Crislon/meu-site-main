@@ -49,70 +49,66 @@
             animation: gradient-animation 15s ease infinite; /* Aplica a animação ao gradiente */
         }
 
-        /* Estilos específicos para os gradientes dos cards de produto */
-        .product-card.garrafa-termica {
-            background-image: linear-gradient(to bottom right, #4a0e6e, #8e2de2, #4a0e6e); /* Roxo */
-        }
-        .product-card.jogo-de-chaves {
-            background-image: linear-gradient(to bottom right, #1e7e34, #28a745, #1e7e34); /* Verde */
-        }
-        .product-card.fone-jbl {
-            background-image: linear-gradient(to bottom right, #ff8c00, #ffa500, #ff8c00); /* Laranja */
-        }
+        /* Estilos específicos para os gradientes dos cards de produto (verde para azul, diminuído) */
+        .product-card.garrafa-termica,
+        .product-card.jogo-de-chaves,
+        .product-card.fone-jbl,
         .product-card.maquina-de-cortar-cabelo {
-            background-image: linear-gradient(to bottom right, #daa520, #ffd700, #daa520); /* Dourado */
+            background-image: linear-gradient(to bottom right, #a7f3d0, #bfdbfe, #a7f3d0); /* Verde claro para Azul claro */
+            color: #1f2937; /* Cor do texto mais escura para contraste */
         }
     </style>
 </head>
-<!-- Adicionado classes de gradiente e animação ao body -->
-<body class="bg-gradient-to-br from-blue-400 via-purple-500 to-pink-600 flex-center animated-gradient">
-    <!-- A parte central agora tem um degradê mais vibrante -->
-    <div class="p-8 max-w-2xl mx-auto bg-gradient-to-br from-purple-100 via-pink-200 to-orange-100 rounded-3xl shadow-2xl space-y-8">
+<!-- Adicionado classes de gradiente e animação ao body, com tons de laranja escuro para quase branco -->
+<body class="bg-gradient-to-br from-orange-800 via-orange-600 to-orange-200 flex-center animated-gradient">
+    <!-- A parte central agora tem um degradê em tons de laranja mais claros e animados, terminando quase branco -->
+    <div class="p-8 max-w-2xl mx-auto bg-gradient-to-br from-orange-600 via-orange-400 to-orange-100 rounded-3xl shadow-2xl space-y-8 animated-gradient">
         <!-- Logo adicionada aqui, com tamanho aumentado para w-64 -->
         <div class="flex justify-center mb-8">
             <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751757179/49e54fb0-4db9-4648-9db0-7eb2808ee158_mipxrm.png"
                  alt="Logo Cris Vendas" class="w-64 h-auto rounded-xl shadow-md">
         </div>
 
+        <!-- Removido o nome "Cris Vendas" -->
         <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-8 tracking-tight">Nossos Produtos</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-            <!-- Card do Produto: Garrafa Térmica (roxo com degradê mais intenso e animado) -->
+            <!-- Card do Produto: Garrafa Térmica (verde para azul suave) -->
             <a href="https://crislon.github.io/meu-site-main/Garrafa" target="_blank" rel="noopener noreferrer"
-               class="product-card garrafa-termica block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
+               class="product-card garrafa-termica block p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751121757/unnamed_1_xo7txp.jpg">
                 <h2 class="text-2xl font-bold mb-2">Garrafa Térmica</h2>
-                <p class="text-purple-100 text-sm mb-4">Mantenha suas bebidas na temperatura ideal por horas. Perfeita para o dia a dia e aventuras.</p>
+                <p class="text-gray-700 text-sm mb-4">Mantenha suas bebidas na temperatura ideal por horas. Perfeita para o dia a dia e aventuras.</p>
                 <!-- Imagem de pré-visualização (inicialmente escondida) -->
                 <img src="" alt="Imagem de Garrafa Térmica" class="product-image-preview mx-auto">
             </a>
 
-            <!-- Card do Produto: Jogo de Chaves (verde com degradê mais intenso e animado) -->
+            <!-- Card do Produto: Jogo de Chaves (verde para azul suave) -->
             <a href="https://crislon.github.io/meu-site-main/Chaves" target="_blank" rel="noopener noreferrer"
-               class="product-card jogo-de-chaves block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
+               class="product-card jogo-de-chaves block p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751125394/videoframe_1759_iugdf4.png">
                 <h2 class="text-2xl font-bold mb-2">Jogo de Chaves</h2>
-                <p class="text-green-100 text-sm mb-4">Ferramentas essenciais para qualquer reparo doméstico ou profissional. Durabilidade e precisão.</p>
+                <p class="text-gray-700 text-sm mb-4">Ferramentas essenciais para qualquer reparo doméstico ou profissional. Durabilidade e precisão.</p>
                 <!-- Imagem de pré-visualização (inicialmente escondida) -->
                 <img src="" alt="Imagem de Jogo de Chaves" class="product-image-preview mx-auto">
             </a>
 
-            <!-- Card do Produto: Fone JBL (laranja com degradê mais intenso e animado) -->
+            <!-- Card do Produto: Fone JBL (verde para azul suave) -->
             <a href="https://crislon.github.io/meu-site-main/Fone" target="_blank" rel="noopener noreferrer"
-               class="product-card fone-jbl block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
+               class="product-card fone-jbl block p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751477757/br-11134207-7r98o-m5glcymp754i38_resize_w450_nl_y0zptl.webp">
                 <h2 class="text-2xl font-bold mb-2">Fone JBL</h2>
-                <p class="text-orange-100 text-sm mb-4">Experimente um som imersivo e de alta qualidade. Conforto e clareza para sua música.</p>
+                <p class="text-gray-700 text-sm mb-4">Experimente um som imersivo e de alta qualidade. Conforto e clareza para sua música.</p>
                 <!-- Imagem de pré-visualização (inicialmente escondida) -->
                 <img src="" alt="Imagem de Fone JBL" class="product-image-preview mx-auto">
             </a>
 
-            <!-- Card do Produto: Máquina de Cortar Cabelo (dourado com degradê mais intenso e animado) -->
+            <!-- Card do Produto: Máquina de Cortar Cabelo (verde para azul suave) -->
             <a href="https://crislon.github.io/meu-site-main/Maquina" target="_blank" rel="noopener noreferrer"
-               class="product-card maquina-de-cortar-cabelo block text-white p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
+               class="product-card maquina-de-cortar-cabelo block p-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl animated-gradient"
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751127863/cortador_j4cwwe.png">
                 <h2 class="text-2xl font-bold mb-2">Máquina de Cortar Cabelo</h2>
-                <p class="text-amber-100 text-sm mb-4">Cortes precisos e profissionais no conforto da sua casa. Praticidade e eficiência.</p>
+                <p class="text-gray-700 text-sm mb-4">Cortes precisos e profissionais no conforto da sua casa. Praticidade e eficiência.</p>
                 <!-- Imagem de pré-visualização (inicialmente escondida) -->
                 <img src="" alt="Imagem de Máquina de Cortar Cabelo" class="product-image-preview mx-auto">
             </a>
