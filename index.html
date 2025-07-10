@@ -26,15 +26,15 @@
             object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
             border-radius: 0.75rem; /* Cantos arredondados para a imagem */
             margin-top: 1rem; /* Espaçamento superior */
-            display: none; /* Escondido por padrão */
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out; /* Transição mais lenta e corrigida para opacidade */
+            opacity: 0; /* Invisível por padrão */
+            pointer-events: none; /* Não interage com o mouse quando invisível */
+            transition: opacity 09s ease-in-out; /* Transição suave para opacidade */
         }
 
         /* Quando o card é hover, a imagem de pré-visualização se torna visível */
         .product-card:hover .product-image-preview {
-            display: block; /* Mostra a imagem */
             opacity: 1; /* Torna a imagem totalmente visível */
+            pointer-events: auto; /* Permite interação com o mouse quando visível */
         }
 
         /* Animação para o degradê de fundo e dos botões */
@@ -79,8 +79,8 @@
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751121757/unnamed_1_xo7txp.jpg">
                 <h2 class="text-2xl font-bold mb-2">Garrafa Térmica</h2>
                 <p class="text-gray-700 text-sm mb-4">Mantenha suas bebidas na temperatura ideal por horas. Perfeita para o dia a dia e aventuras.</p>
-                <!-- Imagem de pré-visualização (inicialmente escondida) -->
-                <img src="" alt="Imagem de Garrafa Térmica" class="product-image-preview mx-auto">
+                <!-- Imagem de pré-visualização (inicialmente invisível) -->
+                <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751121757/unnamed_1_xo7txp.jpg" alt="Imagem de Garrafa Térmica" class="product-image-preview mx-auto">
             </a>
 
             <!-- Card do Produto: Jogo de Chaves (verde para azul suave) -->
@@ -89,8 +89,8 @@
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751125394/videoframe_1759_iugdf4.png">
                 <h2 class="text-2xl font-bold mb-2">Jogo de Chaves</h2>
                 <p class="text-gray-700 text-sm mb-4">Ferramentas essenciais para qualquer reparo doméstico ou profissional. Durabilidade e precisão.</p>
-                <!-- Imagem de pré-visualização (inicialmente escondida) -->
-                <img src="" alt="Imagem de Jogo de Chaves" class="product-image-preview mx-auto">
+                <!-- Imagem de pré-visualização (inicialmente invisível) -->
+                <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751125394/videoframe_1759_iugdf4.png" alt="Imagem de Jogo de Chaves" class="product-image-preview mx-auto">
             </a>
 
             <!-- Card do Produto: Fone JBL (verde para azul suave) -->
@@ -99,8 +99,8 @@
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751477757/br-11134207-7r98o-m5glcymp754i38_resize_w450_nl_y0zptl.webp">
                 <h2 class="text-2xl font-bold mb-2">Fone JBL</h2>
                 <p class="text-gray-700 text-sm mb-4">Experimente um som imersivo e de alta qualidade. Conforto e clareza para sua música.</p>
-                <!-- Imagem de pré-visualização (inicialmente escondida) -->
-                <img src="" alt="Imagem de Fone JBL" class="product-image-preview mx-auto">
+                <!-- Imagem de pré-visualização (inicialmente invisível) -->
+                <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751477757/br-11134207-7r98o-m5glcymp754i38_resize_w450_nl_y0zptl.webp" alt="Imagem de Fone JBL" class="product-image-preview mx-auto">
             </a>
 
             <!-- Card do Produto: Máquina de Cortar Cabelo (verde para azul suave) -->
@@ -109,8 +109,8 @@
                data-image="https://res.cloudinary.com/du76scqem/image/upload/v1751127863/cortador_j4cwwe.png">
                 <h2 class="text-2xl font-bold mb-2">Máquina de Cortar Cabelo</h2>
                 <p class="text-gray-700 text-sm mb-4">Cortes precisos e profissionais no conforto da sua casa. Praticidade e eficiência.</p>
-                <!-- Imagem de pré-visualização (inicialmente escondida) -->
-                <img src="" alt="Imagem de Máquina de Cortar Cabelo" class="product-image-preview mx-auto">
+                <!-- Imagem de pré-visualização (inicialmente invisível) -->
+                <img src="https://res.cloudinary.com/du76scqem/image/upload/v1751127863/cortador_j4cwwe.png" alt="Imagem de Máquina de Cortar Cabelo" class="product-image-preview mx-auto">
             </a>
         </div>
 
@@ -125,20 +125,9 @@
     </div>
 
     <script>
-        // Seleciona todos os cards de produto
-        const productCards = document.querySelectorAll('.product-card');
-
-        // Adiciona um ouvinte de evento para cada card
-        productCards.forEach(card => {
-            const previewImage = card.querySelector('.product-image-preview');
-            const imageUrl = card.dataset.image; // Pega o URL da imagem do atributo data-image
-
-            // Define a fonte da imagem uma vez, na inicialização
-            if (imageUrl) {
-                previewImage.src = imageUrl;
-            }
-            // Não há mais event listeners de mouseover/mouseout aqui, o CSS fará o trabalho.
-        });
+        // Não há mais JavaScript para controlar a visibilidade da imagem de pré-visualização.
+        // O CSS agora lida com isso de forma mais eficiente.
+        // Apenas garantimos que o src das imagens esteja definido no HTML.
     </script>
 </body>
 </html>
